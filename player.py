@@ -30,13 +30,12 @@ class Player(CircleShape):
 
     def shoot(self):
         if self.shot_cooldown > 0:
-            return None
-        else:
-            direction = pygame.Vector2(0, 1).rotate(self.rotation)
-            velocity = direction * PLAYER_SHOOT_SPEED
-            spawn_pos = self.position + direction * (self.radius + SHOT_RADIUS)
-            self.shot_cooldown += PLAYER_SHOOT_COOLDOWN_SECONDS
-            return Shot(spawn_pos.x, spawn_pos.y, velocity)
+            return
+        direction = pygame.Vector2(0, 1).rotate(self.rotation)
+        velocity = direction * PLAYER_SHOOT_SPEED
+        spawn_pos = self.position + direction * (self.radius + SHOT_RADIUS)
+        self.shot_cooldown += PLAYER_SHOOT_COOLDOWN_SECONDS
+        return Shot(spawn_pos.x, spawn_pos.y, velocity)
     
     def update(self, dt):
         keys = pygame.key.get_pressed()
